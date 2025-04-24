@@ -42,6 +42,29 @@ const salaryRangesList = [
   },
 ]
 
+const loactionsList = [
+  {
+    label: 'Hyderabad',
+    locationId: 'HYDERABAD',
+  },
+  {
+    label: 'Bangalore',
+    locationId: 'BANGALORE',
+  },
+  {
+    label: 'Chennai',
+    locationId: 'CHENNAI',
+  },
+  {
+    label: 'Delhi',
+    locationId: 'DELHI',
+  },
+  {
+    label: 'Mumbai',
+    locationId: 'MUMBAI',
+  },
+]
+
 const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
@@ -101,6 +124,11 @@ class Profile extends Component {
     updateSalaryRange(event.target.value)
   }
 
+  updateLocation = event => {
+    const {updateLocation} = this.props
+    updateLocation(event.target.value.toLowerCase())
+  }
+
   getEmploymentTypesList = () =>
     employmentTypesList.map(eachType => (
       <li className="employment-each-type" key={eachType.employmentTypeId}>
@@ -125,6 +153,19 @@ class Profile extends Component {
           name="range"
         />
         <label htmlFor={eachRange.salaryRangeId}>{eachRange.label}</label>
+      </li>
+    ))
+
+  getLocationList = () =>
+    loactionsList.map(eachLocation => (
+      <li className="employment-each-type" key={eachLocation.locationId}>
+        <input
+          type="checkbox"
+          id={eachLocation.locationId}
+          value={eachLocation.locationId}
+          onChange={this.updateLocation}
+        />
+        <label htmlFor={eachLocation.locationId}>{eachLocation.label}</label>
       </li>
     ))
 
@@ -192,6 +233,9 @@ class Profile extends Component {
         <ul className="salary-range-container">
           {this.getSalaryRangeOptions()}
         </ul>
+        <hr className="underline" />
+        <h1 className="sort-list-heading">Location</h1>
+        <ul className="location-container">{this.getLocationList()}</ul>
       </>
     )
   }

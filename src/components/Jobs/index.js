@@ -21,6 +21,7 @@ class Jobs extends Component {
   state = {
     selectedSalaryRange: '',
     selectedEmploymentTypes: [],
+    selectedLocations: [],
     searchInput: '',
     searchValue: '',
     allJobsData: [],
@@ -34,8 +35,12 @@ class Jobs extends Component {
   getallJobsData = async () => {
     this.setState({apiStatus: apiStatusConstants.inProgress})
 
-    const {selectedSalaryRange, selectedEmploymentTypes, searchInput} =
-      this.state
+    const {
+      selectedSalaryRange,
+      selectedEmploymentTypes,
+      selectedLocations,
+      searchInput,
+    } = this.state
 
     const selectedEmploymentTypesString = selectedEmploymentTypes.join(',')
 
@@ -68,8 +73,17 @@ class Jobs extends Component {
       if (updateFormatData.length === 0) {
         this.setState({apiStatus: apiStatusConstants.noJobs})
       } else {
+        let jobsList = []
+        if (selectedLocations.length > 0) {
+          jobsList = updateFormatData.filter(eachJob =>
+            selectedLocations.some(location =>
+              eachJob.location.toLowerCase().includes(location.toLowerCase()),
+            ),
+          )
+        }
+        const jobsDataList = jobsList.length > 0 ? jobsList : updateFormatData
         this.setState({
-          allJobsData: updateFormatData,
+          allJobsData: jobsDataList,
           apiStatus: apiStatusConstants.success,
         })
       }
@@ -99,6 +113,33 @@ class Jobs extends Component {
       this.setState(
         {
           selectedEmploymentTypes: [...selectedEmploymentTypes, value],
+        },
+        this.getallJobsData,
+      )
+    }
+  }
+
+  updateLocation = value => {
+    const {selectedLocations} = this.state
+    if (selectedLocations.length === 0) {
+      this.setState(
+        {
+          selectedLocations: [...selectedLocations, value],
+        },
+        this.getallJobsData,
+      )
+    } else if (selectedLocations.includes(value)) {
+      const currentSelected = selectedLocations.filter(
+        eachType => eachType !== value,
+      )
+      this.setState(
+        {selectedLocations: [...currentSelected]},
+        this.getallJobsData,
+      )
+    } else {
+      this.setState(
+        {
+          selectedLocations: [...selectedLocations, value],
         },
         this.getallJobsData,
       )
@@ -220,6 +261,7 @@ class Jobs extends Component {
             <Profile
               updateSalaryRange={this.updateSalaryRange}
               updateEmploymentType={this.updateEmploymentType}
+              updateLocation={this.updateLocation}
             />
           </div>
           <div className="jobs-search-all-jobs-container">
