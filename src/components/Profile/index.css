@@ -1,0 +1,99 @@
+.profile-container {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/profile-bg.png');
+  background-size: cover;
+  border-radius: 15px;
+  margin-top: 20px;
+  padding: 15px;
+}
+
+.profile-img {
+  width: 30px;
+}
+
+.profile-name {
+  color: #4f46e5;
+  font-size: 15px;
+  margin: 5px 0px;
+}
+
+.profile-short-bio {
+  color: #2c364c;
+  font-size: 10px;
+  font-weight: 500;
+  margin: 5px 0px;
+  margin-bottom: 10px;
+}
+
+.underline {
+  border: 1px solid #64748b;
+  margin-top: 15px;
+}
+
+.sort-list-heading {
+  color: #f8fafc;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.employment-types-container {
+  list-style: none;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.employment-each-type {
+  display: flex;
+  align-items: center;
+  font-size: 8px;
+  color: #f8fafc;
+  font-weight: 500;
+  margin: 3px 0px;
+}
+
+.salary-range-container {
+  list-style: none;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.retry-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+.retry-button {
+  background-color: #4f46e5;
+  color: #ffffff;
+  border: 0px;
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+  font-size: 8px;
+  padding: 5px 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .profile-img {
+    width: 50px;
+  }
+
+  .profile-name {
+    font-size: 18px;
+  }
+
+  .profile-short-bio {
+    font-size: 12px;
+  }
+
+  .sort-list-heading {
+    font-size: 14px;
+  }
+
+  .employment-each-type {
+    font-size: 12px;
+  }
+}
