@@ -132,8 +132,12 @@ class JobItemDetails extends Component {
   )
 
   getSuccessView = () => {
-    const {jobDetailsData, jobSkills, jobLifeAtCompany, similarJobsData} =
-      this.state
+    const {
+      jobDetailsData,
+      jobSkills,
+      jobLifeAtCompany,
+      similarJobsData
+    } = this.state
     const {
       companyLogoUrl,
       companyWebsiteUrl,
