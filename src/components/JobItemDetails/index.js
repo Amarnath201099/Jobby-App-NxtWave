@@ -136,7 +136,7 @@ class JobItemDetails extends Component {
       jobDetailsData,
       jobSkills,
       jobLifeAtCompany,
-      similarJobsData
+      similarJobsData,
     } = this.state
     const {
       companyLogoUrl,
